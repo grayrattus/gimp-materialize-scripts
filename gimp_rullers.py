@@ -64,12 +64,12 @@ class MaterialSizeFactory:
             return XLarge()
 
 class GuidelinesFactory:
-    defaultOpacity=100.0
     @staticmethod
     def createGuidelines(width, height):
+        defaultOpacity=100.0
         materialSize = MaterialSizeFactory.createMaterialSize(width)
         image = pdb.gimp_image_new(materialSize.min_width, height, 0)
-        layer = pdb.gimp_layer_new(image, materialSize.min_width, height, 0, "guide_lines", defaultOpacity, 0)
+        layer = pdb.gimp_layer_new(image, materialSize.min_width, height, 0, materialSize.window_name, defaultOpacity, 0)
 
         pdb.gimp_image_add_layer(image, layer, 0)
         pdb.gimp_display_new(image)
