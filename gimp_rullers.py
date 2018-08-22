@@ -50,18 +50,13 @@ class XSmall(MaterialSize):
     margins = 16
 
 class MaterialSizeFactory:
+    sizes=[XSmall(), Small(), Medium(), Large(), XLarge()]
     @staticmethod
-    def createMaterialSize(size):
-        if size < XSmall.max_width:
-            return XSmall()
-        elif size < Small.max_width:
-            return Small()
-        elif size < Medium.max_width:
-            return Medium()
-        elif size < Large.max_width:
-            return Large()
-        else:
-            return XLarge()
+    def createMaterialSize(input_width):
+        for size in MaterialSizeFactory.sizes:
+            if input_width < size.max_width:
+                return size
+        return MaterialSizeFactory.sizes[-1]
 
 class GuidelinesFactory:
     @staticmethod
